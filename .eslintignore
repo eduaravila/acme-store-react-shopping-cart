@@ -1,0 +1,15 @@
+# directories
+node_modules/
+.next/
+out/
+public/
+coverage/
+__tests__/
+ 
+# files
+coverage/
+.DS_Store
+*.log
+next.config.js
+
+_generator.js
