@@ -1,31 +1,31 @@
-import ShoppingCarProvider from '@/context/shoppingCar'
-import type { AppProps } from 'next/app'
-import { SWRConfig } from 'swr'
-import '../styles/globals.css'
+import ShoppingCartProvider from "@/context/shoppingCart";
+import type { AppProps } from "next/app";
+import { SWRConfig } from "swr";
+import "../styles/globals.css";
 
-type FetcherReturnType<T> = Promise<T>
+type FetcherReturnType<T> = Promise<T>;
 
 type FetcherType = {
-  <T = any>(url: string, options?: RequestInit): FetcherReturnType<T>
-}
+  <T = any>(url: string, options?: RequestInit): FetcherReturnType<T>;
+};
 
 const fetcher: FetcherType = async (url, options) => {
-  const res = await fetch(url, options)
+  const res = await fetch(url, options);
   if (!res.ok) {
-    throw new Error(`Failed to fetch ${url}: ${res.status} ${res.statusText}`)
+    throw new Error(`Failed to fetch ${url}: ${res.status} ${res.statusText}`);
   }
-  return res.json()
-}
+  return res.json();
+};
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     // SWRConfig is a component that allows you to configure SWR globally.
     <SWRConfig value={{ fetcher }}>
-      <ShoppingCarProvider>
+      <ShoppingCartProvider>
         <Component {...pageProps} />
-      </ShoppingCarProvider>
+      </ShoppingCartProvider>
     </SWRConfig>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

@@ -1,14 +1,14 @@
-import { Currency } from '@/common/types'
+import { Currency } from "@/common/types";
 
 interface ChangeCurrencyAction {
-  type: 'CHANGE_CURRENCY'
-  currency: Currency
+  type: "CHANGE_CURRENCY";
+  currency: Currency;
 }
 export interface CurrencyConfigState {
-  currency?: Currency
+  currency?: Currency;
 }
 
-type CurrencyConfigAction = ChangeCurrencyAction
+export type CurrencyConfigAction = ChangeCurrencyAction;
 
 /*
 reducer to handle the currency configuration
@@ -29,19 +29,19 @@ because we dont know if the api support usd
 */
 export const initialState: CurrencyConfigState = {
   currency: undefined,
-}
+};
 
 export const currencyConfigReducer = (
   state: CurrencyConfigState,
   action: CurrencyConfigAction
 ): CurrencyConfigState => {
   switch (action.type) {
-    case 'CHANGE_CURRENCY': {
+    case "CHANGE_CURRENCY": {
       return {
         currency: action.currency,
-      }
+      };
     }
     default:
-      return state
+      return state;
   }
-}
+};

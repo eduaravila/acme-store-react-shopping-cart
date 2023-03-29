@@ -1,49 +1,33 @@
-import { ApiItemsResponse, Item } from '@/common/types'
-import { ErrorMessage } from '@/components/ErrorMessage'
-
-import { GetServerSideProps, NextPage } from 'next'
-import Image from 'next/image'
-
-const PAGE_SIZE = '10'
+import { ApiItemsResponse } from "@/common/types";
+import Home from "@/components/pages/Store";
+import { PAGE_SIZE } from "@/constants";
+import { GetServerSideProps } from "next";
 
 interface PageProps {
-  itemsResponse: ApiItemsResponse
+  itemsResponse: ApiItemsResponse;
 }
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
-  const { API_URL } = process.env
-  const { page = 0, query = '' } = context.query
+export const getServerSideProps: GetServerSideProps<PageProps> = async (
+  context
+) => {
+  const { API_URL } = process.env;
+  const { page = 1, query = "" } = context.query;
+  const actualPage = Number(page) - 1 || 0;
+  const resItems = await fetch(
+    `${API_URL}/items?limit=${PAGE_SIZE}&offset=${actualPage}&query=${query}`
+  );
 
-  const res = await fetch(`${API_URL}/items?limit=${PAGE_SIZE}&offset=${page}&query=${query}`)
+  const resCurrency = await fetch(`${API_URL}/currencies`);
 
-  const itemsResponse: ApiItemsResponse = await res.json()
+  const itemsResponse: ApiItemsResponse = await resItems.json();
+  const currencies = await resCurrency.json();
 
   return {
     props: {
       itemsResponse,
+      currencies,
     },
-  }
-}
+  };
+};
 
-interface HomeProps {
-  itemsResponse: ApiItemsResponse
-}
-
-const Home: NextPage<HomeProps> = ({ itemsResponse }) => {
-  const Items = itemsResponse.items.map((item: Item) => (
-    <div key={item.id}>
-      <h1>{item.title}</h1>
-      <p>{item.description}</p>
-      <p>{item.price}</p>
-      <Image src={item.imageSrc} alt={item.title} width={300} height={300} />
-    </div>
-  ))
-
-  if (!itemsResponse.items.length) {
-    return <ErrorMessage message='Oops, no items found.' />
-  }
-
-  return <div>{Items}</div>
-}
-
-export default Home
+export default Home;
