@@ -13,7 +13,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+
+    "paths":{
+      "@/*": ["./*"]
+    },
+    "types": [
+      "next",
+      "next/types/global",
+      "next/image-types/global",
+      "node"
+    ],
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
