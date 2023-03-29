@@ -6,6 +6,9 @@ const nextConfig = {
     outputStandalone: true,
     outputFileTracingRoot: path.join(__dirname, '../../'),
   },
+  images: {
+    domains: ['placeimg.com'],
+  },
 }
 
 module.exports = nextConfig

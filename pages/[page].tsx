@@ -1,6 +1,8 @@
 import { ApiItemsResponse, Item } from '@/common/types'
+import { ErrorMessage } from '@/components/ErrorMessage'
+
 import { GetServerSideProps, NextPage } from 'next'
-import { ErrorMessage } from '../components/ErrorMessage'
+import Image from 'next/image'
 
 const PAGE_SIZE = '10'
 
@@ -9,11 +11,10 @@ interface PageProps {
 }
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
-  const API_URL = process.env.API_URL
-  const { page, query } = context.query
-  const queryValue = query?.toString() ?? '' // set default value of "" if query is undefined or null
+  const { API_URL } = process.env
+  const { page = 0, query = '' } = context.query
 
-  const res = await fetch(API_URL + `/items?limit=${PAGE_SIZE}&offset=${page}&query=${queryValue}`)
+  const res = await fetch(`${API_URL}/items?limit=${PAGE_SIZE}&offset=${page}&query=${query}`)
 
   const itemsResponse: ApiItemsResponse = await res.json()
 
@@ -24,25 +25,24 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (context)
   }
 }
 
-interface HomePropsI {
+interface HomeProps {
   itemsResponse: ApiItemsResponse
 }
 
-const Home: NextPage<HomePropsI> = ({ itemsResponse }) => {
-  const Items = itemsResponse.items.map((item: Item) => {
-    return (
-      <div key={item.id}>
-        <h1>{item.title}</h1>
-        <p>{item.description}</p>
-        <p>{item.price}</p>
-        <img src={item.imageSrc} alt={item.title} />
-      </div>
-    )
-  })
+const Home: NextPage<HomeProps> = ({ itemsResponse }) => {
+  const Items = itemsResponse.items.map((item: Item) => (
+    <div key={item.id}>
+      <h1>{item.title}</h1>
+      <p>{item.description}</p>
+      <p>{item.price}</p>
+      <Image src={item.imageSrc} alt={item.title} width={300} height={300} />
+    </div>
+  ))
 
-  if (itemsResponse.items.length < 1) {
-    return <ErrorMessage message='Opps no items found' />
+  if (!itemsResponse.items.length) {
+    return <ErrorMessage message='Oops, no items found.' />
   }
+
   return <div>{Items}</div>
 }
 

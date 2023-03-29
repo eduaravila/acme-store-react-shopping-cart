@@ -1,3 +1,4 @@
+import ShoppingCarProvider from '@/context/shoppingCar'
 import type { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
 import '../styles/globals.css'
@@ -20,7 +21,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     // SWRConfig is a component that allows you to configure SWR globally.
     <SWRConfig value={{ fetcher }}>
-      <Component {...pageProps} />
+      <ShoppingCarProvider>
+        <Component {...pageProps} />
+      </ShoppingCarProvider>
     </SWRConfig>
   )
 }
