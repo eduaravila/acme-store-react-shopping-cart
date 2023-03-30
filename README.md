@@ -7,6 +7,45 @@ Thank you for participating in Autify's front-end technical assignment. Please r
 ![linter workflow](https://github.com/eduaravila/acme-store/actions/workflows/lint.yml/badge.svg)
 ![test workflow](https://github.com/eduaravila/acme-store/actions/workflows/test.yml/badge.svg)
 
+
+## Features
+  - Docker
+  - Docker-compose (for local development)
+  - make file for newcomers 
+  - github actions: runs lint (super-lint), and runs the test
+  - tailwind
+  - husky pre-commit action 
+  - testing setup with jest
+
+
+## Development Docker Image
+
+This readme explains how to build and run a development docker image using the makefile commands.
+
+## Prerequisites
+
+- You need to have docker and docker-compose installed on your system.
+- You need to have a dockerfile and a docker-compose.yml file in the same directory as the makefile.
+
+## Makefile Commands
+
+The makefile contains the following commands:
+
+- `make remove-development`: This command stops and removes any existing development docker containers and networks.
+- `make build-development`: This command builds the development docker image using the dockerfile and the docker-compose.yml file.
+- `make start-development`: This command starts the development docker container and attaches it to the network specified in the docker-compose.yml file.
+
+## Usage
+
+To use the makefile commands, follow these steps:
+
+1. Open a terminal and navigate to the directory where the makefile, the dockerfile and the docker-compose.yml file are located.
+2. Run `make remove-development` to stop and remove any existing development docker containers and networks. This is optional but recommended to avoid conflicts.
+3. Run `make build-development` to build the development docker image. This may take some time depending on the size and complexity of your image.
+4. Run `make start-development` to start the development docker container and attach it to the network. You should see some output from the container indicating that it is running.
+5. To stop the development docker container, press Ctrl+C in the terminal or run `make remove-development` in another terminal.
+
+
 ## Instruction
 
 When you finish the assignment
