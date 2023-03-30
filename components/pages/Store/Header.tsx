@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Header: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex items-center justify-between border-2 bg-gray-100 p-4">
       <Link passHref href="/">
         <h1 className="text-4xl font-bold">Acme store</h1>
       </Link>

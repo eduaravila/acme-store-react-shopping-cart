@@ -13,10 +13,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
   const { API_URL } = process.env;
   const { page = 1, query = "" } = context.query;
   const actualPage = Number(page) - 1 || 0;
+
   const resItems = await fetch(
     `${API_URL}/items?limit=${PAGE_SIZE}&offset=${actualPage}&query=${query}`
   );
-
   const resCurrency = await fetch(`${API_URL}/currencies`);
 
   const itemsResponse: ApiItemsResponse = await resItems.json();

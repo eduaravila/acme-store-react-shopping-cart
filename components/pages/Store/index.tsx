@@ -1,5 +1,4 @@
-import { ApiCurrenciesResponse, ApiItemsResponse, Item } from "@/common/types";
-import Card from "@/components/Card";
+import { ApiCurrenciesResponse, ApiItemsResponse } from "@/common/types";
 import { ErrorMessage } from "@/components/ErrorMessage";
 
 import Cart from "@/components/pages/Store/Cart";
@@ -8,7 +7,8 @@ import Header from "@/components/pages/Store/Header";
 import Pagination from "@/components/pages/Store/Pagination";
 import SearchBar from "@/components/pages/Store/SearchBar";
 import { NextPage } from "next";
-import Image from "next/image";
+import { useRouter } from "next/router";
+import Items from "./Items";
 
 interface HomeProps {
   itemsResponse: ApiItemsResponse;
@@ -16,44 +16,36 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ itemsResponse, currencies }) => {
-  const Items = itemsResponse.items.map((item: Item) => (
-    <div key={item.id} className={"w-full"}>
-      <Card.Vertical
-        Header={
-          <Image
-            src={item.imageSrc}
-            alt={item.title}
-            width={300}
-            height={300}
-          />
-        }
-        Body={
-          <>
-            <h1 className="text-2xl font-bold">{item.title}</h1>
-            <p>{item.description}</p>
-            <p>{item.price}</p>
-          </>
-        }
-      />
-    </div>
-  ));
+  const router = useRouter();
 
-  if (!itemsResponse.items.length) {
-    return <ErrorMessage message="Oops, no items found." />;
+  const { cur } = router.query;
+
+  if (currencies.length === 0) {
+    return <ErrorMessage message="Oops, something went wrong." />;
+  }
+
+  let currency = currencies.find((currency) => currency.key === cur);
+
+  if (!currency) {
+    currency = currencies[0];
   }
 
   return (
     <div className="mx-auto">
-      <div>
-        <Header />
-        <div>
-          <SearchBar />
-          <div className="flex flex-wrap md:grid md:grid-cols-4 md:gap-4">
-            {Items}
+      <div className="flex">
+        <div className="flex-1">
+          <Header />
+          <div className="flex flex-col p-8">
+            <SearchBar />
+            <Items
+              items={itemsResponse.items}
+              currency={currency}
+              currencies={currencies}
+            />
+            <Pagination total={itemsResponse.total} />
           </div>
-          <Pagination total={itemsResponse.total} />
         </div>
-        <Cart />
+        <Cart currencies={currencies} currency={currency} />
       </div>
       <Footer currencies={currencies} />
     </div>

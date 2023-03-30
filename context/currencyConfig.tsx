@@ -40,3 +40,5 @@ export const useCurrencyConfigDispatch = () => {
     CurrenyConfigDispatchContext
   );
 };
+
+export default CurrencyConfigProvider;

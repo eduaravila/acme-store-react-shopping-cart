@@ -5,7 +5,7 @@ export interface ItemWithQuantity extends Item {
 }
 
 export interface CartState {
-  items: ItemWithQuantity[];
+  items: { [key: string]: ItemWithQuantity };
 }
 
 interface AddItemToCartAction {
@@ -18,10 +18,18 @@ interface RemoveItemFromCartAction {
   item: ItemWithQuantity;
 }
 
-export type CartAction = AddItemToCartAction | RemoveItemFromCartAction;
+interface SetCartAction {
+  type: "SET_CART";
+  items: { [key: string]: ItemWithQuantity };
+}
+
+export type CartAction =
+  | AddItemToCartAction
+  | RemoveItemFromCartAction
+  | SetCartAction;
 
 export const initialState: CartState = {
-  items: [],
+  items: {},
 };
 
 export const cartReducer = (
@@ -32,13 +40,23 @@ export const cartReducer = (
     case "ADD_ITEM_TO_CART": {
       return {
         ...state,
-        items: [...state.items, action.item],
+        items: {
+          ...state.items,
+          [action.item.id]: action.item,
+        },
       };
     }
     case "REMOVE_ITEM_FROM_CART": {
+      const { [action.item.id]: _, ...items } = state.items;
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== action.item.id),
+        items,
+      };
+    }
+    case "SET_CART": {
+      return {
+        ...state,
+        items: action.items,
       };
     }
     default:

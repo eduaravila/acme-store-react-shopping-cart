@@ -23,13 +23,10 @@ const Pagination: React.FC<Props> = ({ total }) => {
     });
   }
   return (
-    <div className="flex justify-center">
-      <button
-        disabled={!page || currentPage === 1}
-        onClick={() => handlePageChange(currentPage - 1)}
-      >
-        ←
-      </button>
+    <div className="my-5 flex justify-start">
+      {currentPage !== 1 && (
+        <button onClick={() => handlePageChange(currentPage - 1)}>←</button>
+      )}
       {Array.from({ length: numberOfPages }).map((_, i) => {
         const page = fixPage(i);
         return (
@@ -43,12 +40,9 @@ const Pagination: React.FC<Props> = ({ total }) => {
           </button>
         );
       })}
-      <button
-        disabled={!page || currentPage === numberOfPages}
-        onClick={() => handlePageChange(currentPage + 1)}
-      >
-        →
-      </button>
+      {currentPage !== numberOfPages && (
+        <button onClick={() => handlePageChange(currentPage + 1)}>→</button>
+      )}
     </div>
   );
 };

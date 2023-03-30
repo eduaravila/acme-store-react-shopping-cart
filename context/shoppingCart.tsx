@@ -5,7 +5,13 @@ import {
   initialState,
 } from "@/reducer/shoppingCart";
 import { NextComponentType } from "next";
-import { createContext, Dispatch, useContext, useReducer } from "react";
+import {
+  createContext,
+  Dispatch,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 
 export const ShoppingCartContext = createContext<CartState>(initialState);
 
@@ -21,6 +27,19 @@ const ShoppingCartProvider: NextComponentType<ShoppingCartProviderProps> = ({
   children,
 }) => {
   const [items, dispatch] = useReducer(cartReducer, initialState);
+
+  useEffect(() => {
+    const cart = localStorage.getItem("cart");
+
+    if (cart !== null) {
+      const items = JSON.parse(cart).items;
+      dispatch({ type: "SET_CART", items });
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(items));
+  }, [items]);
 
   return (
     <ShoppingCartContext.Provider value={items}>
