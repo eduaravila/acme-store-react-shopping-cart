@@ -31,7 +31,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "./components/**/*",
-    "./components/**/**/*"
+    "./components/**/*.{ts,tsx}",
+    "./components/**/**/*.{ts,tsx}",
+
   ]
 }
