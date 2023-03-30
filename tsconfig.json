@@ -22,9 +22,10 @@
       "next",
       "next/types/global",
       "next/image-types/global",
-      "node"
+      "node",
+      "jest"
     ],
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "test/price.test.tjs"],
   "exclude": ["node_modules"]
 }

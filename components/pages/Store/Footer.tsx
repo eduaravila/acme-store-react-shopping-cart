@@ -29,7 +29,9 @@ const Footer: React.FC<Props> = ({ currencies }) => {
         </select>
       </div>
       <div>
-        <button>Checkout</button>
+        <button className="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
+          Checkout
+        </button>
       </div>
     </div>
   );
