@@ -14,10 +14,10 @@ module.exports = {
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
   ],
+  parser: "@typescript-eslint/parser",
   parserOptions: {
-    parser: "@typescript-eslint/parser",
-    project: "./tsconfig.json",
-    tsconfigRootDir: __dirname,
+    project: ["./tsconfig.json"],
+    sourceType: "module",
   },
   plugins: ["react", "unused-imports", "@typescript-eslint"],
   rules: {

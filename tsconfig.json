@@ -15,7 +15,7 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
-    "paths":{
+    "paths": {
       "@/*": ["./*"]
     },
     "types": [
@@ -24,8 +24,8 @@
       "next/image-types/global",
       "node",
       "jest"
-    ],
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "constants.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.{ts,tsx,mdx}","test"],
   "exclude": ["node_modules"]
 }
