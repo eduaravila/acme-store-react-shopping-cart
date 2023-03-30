@@ -5,7 +5,7 @@ import {
   useShoppingCartDispatch,
 } from "@/context/shoppingCart";
 import Image from "next/image";
-import { convertPriceToCurrency } from "./common/price";
+import { convertPriceToCurrency } from "../../../utils/price";
 import Price from "./Price";
 
 interface Props {

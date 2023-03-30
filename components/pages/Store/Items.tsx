@@ -4,8 +4,8 @@ import {
   useShoppingCart,
   useShoppingCartDispatch,
 } from "@/context/shoppingCart";
+import { convertPriceToCurrency } from "@/utils/price";
 import Image from "next/image";
-import { convertPriceToCurrency } from "./common/price";
 import Price from "./Price";
 
 interface Props {
