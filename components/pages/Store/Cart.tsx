@@ -5,7 +5,7 @@ import {
   useShoppingCartDispatch,
 } from "@/context/shoppingCart";
 import Image from "next/image";
-import { convertPriceToCurrency } from "./common/price";
+import { convertPriceToCurrency } from "../../../utils/price";
 import Price from "./Price";
 
 interface Props {
@@ -40,6 +40,7 @@ const Cart: React.FC<Props> = ({ currency, currencies }) => {
             <div className="flex w-3/5 flex-col p-3">
               <h1 className="truncate text-2xl font-bold">{item.title}</h1>
               <p className="truncate">{item.description}</p>
+              <p>Qty: {item.quantity}</p>
               <Price
                 price={convertPriceToCurrency(item, currency, currencies)}
               />
@@ -52,10 +53,10 @@ const Cart: React.FC<Props> = ({ currency, currencies }) => {
 
   if (Items.length === 0) return null;
   return (
-    <div className="flex max-h-screen w-1/3 flex-col overflow-scroll bg-gray-300 p-4">
+    <div className="flex max-h-screen w-1/3 flex-col overflow-scroll bg-gray-100 p-4">
       <h1 className="text-2xl">🛒 Cart</h1>
       <div>{Items}</div>
-      <div className="float-right flex flex-col items-end">
+      <div className="float-right mt-8 flex flex-col items-end">
         <h1 className="text-2xl italic">Total</h1>
         <Price
           className="text-3xl font-bold"

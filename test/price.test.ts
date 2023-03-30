@@ -1,5 +1,5 @@
 import { Currency } from "@/common/types";
-import { convertPriceToCurrency } from "@/components/pages/Store/common/price";
+import { convertPriceToCurrency } from "@/utils/price";
 
 describe("convertPriceToCurrency", () => {
   const currencies: Currency[] = [

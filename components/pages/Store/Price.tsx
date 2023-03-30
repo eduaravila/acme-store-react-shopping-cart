@@ -1,5 +1,5 @@
+import { ConvertedPriceData } from "@/utils/price";
 import { HTMLAttributes } from "react";
-import { ConvertedPriceData } from "./common/price";
 
 interface Props extends HTMLAttributes<HTMLParagraphElement> {
   price: ConvertedPriceData;
