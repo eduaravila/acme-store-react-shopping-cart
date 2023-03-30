@@ -1,5 +1,6 @@
 import { Currency } from "@/common/types";
 
+// DECIDED NOT TO USE AND INSTEAD USE QUERY PARAMS
 interface ChangeCurrencyAction {
   type: "CHANGE_CURRENCY";
   currency: Currency;

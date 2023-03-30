@@ -1,12 +1,11 @@
-
-![linter workflow](https://github.com/eduaravila/acme-store/actions/workflows/lint.yml/badge.svg)
-
-![test workflow](https://github.com/eduaravila/acme-store/actions/workflows/test.yml/badge.svg)
-
-
 # Autify Front-end Assignment
 
 Thank you for participating in Autify's front-end technical assignment. Please read the introductions carefully, and let us know if you have any questions. If you bump into any issues during the assignment, feel free to reach us out.
+
+## ACTIONS 
+
+![linter workflow](https://github.com/eduaravila/acme-store/actions/workflows/lint.yml/badge.svg)
+![test workflow](https://github.com/eduaravila/acme-store/actions/workflows/test.yml/badge.svg)
 
 ## Instruction
 

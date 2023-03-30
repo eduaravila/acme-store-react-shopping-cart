@@ -26,6 +26,6 @@
       "jest"
     ],
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "constants.ts"],
   "exclude": ["node_modules"]
 }
