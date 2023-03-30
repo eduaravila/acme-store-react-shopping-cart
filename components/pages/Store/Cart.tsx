@@ -23,7 +23,7 @@ const Cart: React.FC<Props> = ({ currency, currencies }) => {
   }, 0);
 
   const Items = Object.values(items).map((item) => (
-    <div key={item.id} className={"w-full bg-gray-100"}>
+    <div key={item.id} className={"max-h-32 w-full bg-gray-100"}>
       <Card.Horizontal
         TopRight={
           <button
@@ -34,12 +34,12 @@ const Cart: React.FC<Props> = ({ currency, currencies }) => {
         }
         Body={
           <>
-            <div className="relative w-3/6">
+            <div className="relative w-2/6">
               <Image src={item.imageSrc} alt={item.title} layout={"fill"} />
             </div>
-            <div className="flex flex-col p-3">
-              <h1 className="text-2xl font-bold">{item.title}</h1>
-              <p>{item.description}</p>
+            <div className="flex w-3/5 flex-col p-3">
+              <h1 className="truncate text-2xl font-bold">{item.title}</h1>
+              <p className="truncate">{item.description}</p>
               <Price
                 price={convertPriceToCurrency(item, currency, currencies)}
               />
@@ -52,12 +52,13 @@ const Cart: React.FC<Props> = ({ currency, currencies }) => {
 
   if (Items.length === 0) return null;
   return (
-    <div className="flex w-1/3 flex-col bg-gray-300 p-4">
-      <h1 className="text-2xl">Cart</h1>
+    <div className="flex max-h-screen w-1/3 flex-col overflow-scroll bg-gray-300 p-4">
+      <h1 className="text-2xl">🛒 Cart</h1>
       <div>{Items}</div>
-      <div>
-        <h1>Total</h1>
+      <div className="float-right flex flex-col items-end">
+        <h1 className="text-2xl italic">Total</h1>
         <Price
+          className="text-3xl font-bold"
           price={{
             symbol: currency.symbol,
             priceCurrency: currency.key,

@@ -30,7 +30,12 @@ const Items: React.FC<Props> = ({ items, currency, currencies }) => {
           Body={
             <div className="flex h-32 flex-col justify-between">
               <h1 className="text-lg font-bold">{item.title}</h1>
-              <p className="line-clamp-3 text-sm">{item.description}</p>
+              <p
+                className="
+                line-clamp-3 text-sm"
+              >
+                {item.description}
+              </p>
 
               <Price
                 price={convertPriceToCurrency(item, currency, currencies)}
@@ -59,7 +64,7 @@ const Items: React.FC<Props> = ({ items, currency, currencies }) => {
     );
   });
   return (
-    <div className="flex flex-wrap md:grid md:grid-cols-4 md:gap-4">
+    <div className="flex flex-wrap sm:grid sm:grid-cols-3 sm:gap-4 md:grid-cols-4 ">
       {ItemsList}
     </div>
   );

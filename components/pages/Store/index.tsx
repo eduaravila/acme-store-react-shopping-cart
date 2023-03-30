@@ -31,8 +31,8 @@ const Home: NextPage<HomeProps> = ({ itemsResponse, currencies }) => {
   }
 
   return (
-    <div className="mx-auto">
-      <div className="flex">
+    <div className="container mx-auto">
+      <div className="mb-28 flex">
         <div className="flex-1">
           <Header />
           <div className="flex flex-col p-8">

@@ -20,7 +20,7 @@ const SearchBar: React.FC = () => {
   }
 
   return (
-    <div className="mb-5 flex w-1/3">
+    <div className="mb-5 flex w-full md:w-1/3">
       <input
         ref={ref}
         className="mr-4 w-full border-2 border-gray-300 p-2"

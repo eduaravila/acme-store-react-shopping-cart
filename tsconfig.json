@@ -26,6 +26,6 @@
       "jest"
     ],
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "test/price.test.tjs"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

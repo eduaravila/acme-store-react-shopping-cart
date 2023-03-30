@@ -23,10 +23,15 @@ interface SetCartAction {
   items: { [key: string]: ItemWithQuantity };
 }
 
+interface CheckoutCartAction {
+  type: "CHECKOUT_CART";
+}
+
 export type CartAction =
   | AddItemToCartAction
   | RemoveItemFromCartAction
-  | SetCartAction;
+  | SetCartAction
+  | CheckoutCartAction;
 
 export const initialState: CartState = {
   items: {},
@@ -57,6 +62,12 @@ export const cartReducer = (
       return {
         ...state,
         items: action.items,
+      };
+    }
+    case "CHECKOUT_CART": {
+      return {
+        ...state,
+        items: {},
       };
     }
     default:
