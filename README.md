@@ -16,13 +16,12 @@ Thank you for participating in Autify's front-end technical assignment. Please r
   - tailwind
   - husky pre-commit action 
   - testing setup with jest
+  - Has dependabot alerts and updates enabled
 
 
 ## Development Docker Image
 
-This readme explains how to build and run a development docker image using the makefile commands.
-
-## Prerequisites
+### Prerequisites
 
 - You need to have docker and docker-compose installed on your system.
 - You need to have a dockerfile and a docker-compose.yml file in the same directory as the makefile.
