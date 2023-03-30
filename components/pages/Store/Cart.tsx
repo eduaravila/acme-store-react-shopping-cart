@@ -40,6 +40,7 @@ const Cart: React.FC<Props> = ({ currency, currencies }) => {
             <div className="flex w-3/5 flex-col p-3">
               <h1 className="truncate text-2xl font-bold">{item.title}</h1>
               <p className="truncate">{item.description}</p>
+              <p>Qty: {item.quantity}</p>
               <Price
                 price={convertPriceToCurrency(item, currency, currencies)}
               />
