@@ -4,7 +4,9 @@ import { useRef, useState } from "react";
 
 const SearchBar: React.FC = () => {
   const router = useRouter();
-  const [query, setQuery] = useState<string>(router.query.query as string);
+  const [query, setQuery] = useState<string>(
+    (router.query.query as string) || ""
+  );
   const ref = useRef(null);
 
   useKeyToSearch(ref);
@@ -15,7 +17,7 @@ const SearchBar: React.FC = () => {
   function handleSearch() {
     router.push({
       pathname: "/[page]",
-      query: { ...router.query, query },
+      query: { ...router.query, query, page: 1 },
     });
   }
 

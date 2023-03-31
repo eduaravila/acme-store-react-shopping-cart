@@ -19,7 +19,7 @@ const Pagination: React.FC<Props> = ({ total }) => {
   function handlePageChange(page: number) {
     router.push({
       pathname: "/[page]",
-      query: { page },
+      query: { ...router.query, page },
     });
   }
   return (
