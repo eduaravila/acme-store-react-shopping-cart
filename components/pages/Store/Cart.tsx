@@ -53,7 +53,7 @@ const Cart: React.FC<Props> = ({ currency, currencies }) => {
 
   if (Items.length === 0) return null;
   return (
-    <div className="flex max-h-screen w-1/3 flex-col overflow-scroll bg-gray-100 p-4">
+    <div className="flex max-h-screen w-full flex-col overflow-scroll bg-gray-100 p-4 lg:w-1/3">
       <h1 className="text-2xl">🛒 Cart</h1>
       <div>{Items}</div>
       <div className="float-right mt-8 flex flex-col items-end">
