@@ -63,6 +63,22 @@ When you finish the assignment
 
 4. Please make sure that your build works, and we can run your code. If the build breaks due to minor issues like linting, **we will** try our best to get around it and somehow run your code to evaluate it. However keep in mind that this might effect your overall score.
 
+
+## observations!!
+
+the api always return a total of 100
+- even if items is empty 
+- with an invalid query param
+
+for example 
+`api/items?limit=10&offset=0&query=xxxxx`
+
+{
+	"total": 100,
+	"perPage": 10,
+	"items": []
+}
+
 # Acme Store
 
 Acme Corporation decided to create an online store after receiving so many complaints from frustrated customers having trouble with ordering and shipping, and they need your help!
